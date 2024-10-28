@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  CRUD Carga de personal | Home 
+{% endblock %}
+
+{% block body %}
+
+    <!-- FORM -->
+    <div class="row">
+    
+    <div class="col-md-5 p-5">
+      <!-- MESSAGE -->
+      {% include 'partials/_message.html' %}
+  
+      <!-- FORM -->
+      {%  include 'partials/_NroJForm.html' %}
+    </div>
+    <!--  listado de expedientes -->
+    <div class="col-md-7">
+      {% for NroJ in NrosJ %}
+        <div class="card mb-1 bg-black text-white">
+          <div class="card-body py-2 px-3">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title h6"> Numero N° {{ NroJ.id }}</h5>
+              <div>
+                <a href="{{ url_for('NrosJ.update', id=NroJ.id) }}" class="btn btn-dark btn-sm rounded-0">Edit</a>
+                <a href="{{ url_for('NrosJ.delete', id=NroJ.id) }}" class="btn btn-danger btn-sm rounded-0">Delete</a>
+              </div>
+            </div>
+            <p class="card-text">Fecha: {{ NroJ.fecha }}</p>
+            <p class="card-text">Secretario: {{ NroJ.secretario }}</p>
+            <p class="card-text">Destino: {{ NroJ.destino }}</p>
+            <p class="card-text">Motivo: {{ NroJ.motivo }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  
+
+  </div>
+    </div>
+
+
+
+
+
+{% endblock %}
