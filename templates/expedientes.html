@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  CRUD Carga de personal | Home 
+{% endblock %}
+
+{% block body %}
+
+    <!-- FORM -->
+    <div class="row">
+    
+    <div class="col-md-5 p-5">
+      <!-- MESSAGE -->
+      {% include 'partials/_message.html' %}
+  
+      <!-- FORM -->
+      {%  include 'partials/_expteForm.html' %}
+    </div>
+    <!--  listado de expedientes -->
+    <div class="col-md-7">
+      {% for expte in exptes %}
+        <div class="card mb-1 bg-black text-white">
+          <div class="card-body py-2 px-3">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title h6"> Expte. N° {{ expte.id }}</h5>
+              <div>
+                <a href="{{ url_for('exptes.update', id=expte.id) }}" class="btn btn-dark btn-sm rounded-0">Edit</a>
+                <a href="{{ url_for('exptes.delete', id=expte.id) }}" class="btn btn-danger btn-sm rounded-0">Delete</a>
+              </div>
+            </div>
+            <p class="card-text">Fecha Ingreso: {{ expte.fechaing }}</p>
+            <p class="card-text">Procedencia: {{ expte.proc }}</p>
+            <p class="card-text">Detalle: {{ expte.detalle }}</p>
+            <p class="card-text">Instructor: {{ expte.instructor }}</p>
+            <p class="card-text">Secretario: {{ expte.secretario }}</p>
+            <p class="card-text">Destino: {{ expte.destino }}</p>
+            <p class="card-text">Fecha Salida: {{ expte.fechasal }}</p>
+            <p class="card-text">Observaciones{{ expte.obs }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  
+
+  </div>
+    </div>
+
+
+
+
+
+{% endblock %}

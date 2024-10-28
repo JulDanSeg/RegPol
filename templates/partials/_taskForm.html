@@ -1,0 +1,49 @@
+<form action="/new_efectivo" method="POST" class="card bg-black text-light">
+    <div class="card-body p-4">
+      <h1 class="h5 mb-4">Añadir efectivo</h1>
+  
+      <div class="mb-3">
+        <label for="fullname">Nombre completo:</label>
+        <input
+          type="text"
+          name="fullname"
+          class="form-control rounded-0 bg-dark border-0 text-white"
+          placeholder="Nombre completo"
+          autofocus
+        />
+      </div>
+  
+      <div class="mb-3">
+        <label for="jerarquia">Jerarquia:</label>
+        <input
+          type="text"
+          name="jerarquia"
+          class="form-control rounded-0 bg-dark border-0 text-white"
+          placeholder="Jerarquia"
+          required
+        />
+      </div>
+  
+      <div class="mb-3">
+        <label for="LP">Legajo:</label>
+        <input
+          type="number"
+          name="LP"
+          class="form-control rounded-0 bg-dark border-0 text-white"
+          placeholder="Numero de legajo"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="DNI">DNI N°:</label>
+        <input
+          type="number"
+          name="DNI"
+          class="form-control rounded-0 bg-dark border-0 text-white"
+          placeholder="Numero de DNI"
+        />
+      </div>
+  
+      <button class="btn btn-primary">Guardar</button>
+    </div>
+  </form>

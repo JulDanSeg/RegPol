@@ -1,0 +1,95 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="col-md-4 offset-md-4">
+  <div class="card card-body bg-dark text-white">
+    <h1>Edit Task</h1>
+
+    <form action="{{url_for('exptes.update', id=expte.id)}}" method="POST">
+
+        <div class="mb-3">
+        <label for="fechaing">Fecha ingreso:</label>
+        <input
+          type="date"
+          name="fechaing"
+          value="{{expte.fechaing}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+        </div>
+
+      <div class="mb-3">
+        <label for="proc">Procedencia:</label>
+        <input
+          type="text"
+          name="proc"
+          value="{{expte.proc}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="detalle">Detalle:</label>
+        <input
+          type="text"
+          name="detalle"
+          value="{{expte.detalle}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="secretario">ID del secretario:</label>
+        <input
+          type="number"
+          name="secretario"
+          value="{{expte.secretario}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="instructor">ID del instructor:</label>
+        <input
+          type="number"
+          name="instructor"
+          value="{{expte.instructor}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="destino">Destino:</label>
+        <input
+          type="text"
+          name="destino"
+          value="{{expte.destino}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="fechasal">Fecha Salida:</label>
+        <input
+          type="date"
+          name="fechasal"
+          value="{{expte.fechasal}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+        </div>
+
+      <div class="mb-3">
+        <label for="obs">Observaciones:</label>
+        <input
+          type="text"
+          name="obs"
+          value="{{expte.obs}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
