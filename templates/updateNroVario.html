@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="col-md-4 offset-md-4">
+  <div class="card card-body bg-dark text-white">
+    <h1>Edit Task</h1>
+
+    <form action="{{url_for('NrosV.update', id=NroV.id)}}" method="POST">
+
+        <div class="mb-3">
+        <label for="fechaing">Fecha:</label>
+        <input
+          type="date"
+          name="fecha"
+          value="{{NroV.fecha}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+        </div>
+
+      <div class="mb-3">
+        <label for="secretario">LP del secretario:</label>
+        <input
+          type="number"
+          name="secretario"
+          value="{{NroV.secretario}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+
+      <div class="mb-3">
+        <label for="destino">Destino:</label>
+        <input
+          type="text"
+          name="destino"
+          value="{{NroV.destino}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+
+      <div class="mb-3">
+        <label for="motivo">Motivo:</label>
+        <input
+          type="text"
+          name="motivo"
+          value="{{NroV.motivo}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
