@@ -8,6 +8,21 @@
 
     <!-- FORM -->
     <div class="row">
+    <form action="/buscar" method="GET" class="mb-4">
+        <div class="mb-3">
+          <input type="text" name="query" class="form-control" placeholder="Buscar por nombre, DNI o legajo" required>
+        </div>
+        <div class="mb-3">
+          <label for="tabla">Buscar en:</label>
+          <select name="tabla" class="form-select">
+              <option value="todos">Todas las tablas</option>
+              <option value="efectivo">Efectivos</option>
+              <option value="expediente">Expedientes</option>
+              <option value="causa">Causas</option>
+          </select>
+      </div>
+        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+    </form>  
     
     <div class="col-md-5 p-5">
       <!-- MESSAGE -->

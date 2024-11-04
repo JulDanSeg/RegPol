@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  CRUD Carga de personal | Home 
+{% endblock %}
+
+{% block body %}
+
+    <!-- FORM -->
+    <div class="row">
+    
+    <div class="col-md-5 p-5">
+      <!-- MESSAGE -->
+      {% include 'partials/_message.html' %}
+  
+      <!-- FORM -->
+      {%  include 'partials/_secuForm.html' %}
+    </div>
+
+    <!--  listado de expedientes -->
+    <div class="col-md-7">
+      {% for secuestro in secuestros %}
+        <div class="card mb-1 bg-black text-white">
+          <div class="card-body py-2 px-3">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title h6"> secuestro. N° {{ secuestro.id }}</h5>
+              <div>
+                <a href="{{ url_for('secuestros.update', id=secuestro.id) }}" class="btn btn-dark btn-sm rounded-0">Edit</a>
+                <a href="{{ url_for('secuestros.delete', id=secuestro.id) }}" class="btn btn-danger btn-sm rounded-0">Delete</a>
+              </div>
+            </div>
+            <p class="card-text">Fecha Ingreso: {{ secuestro.fechaing }}</p>
+            <p class="card-text">Detalle: {{ secuestro.detalle }}</p>
+            <p class="card-text">Nro. Expediente: {{ secuestro.nroExpte }}</p>
+            <p class="card-text">Fecha Salida: {{ secuestro.fechasal }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  
+
+  </div>
+    </div>
+
+
+
+
+
+{% endblock %}

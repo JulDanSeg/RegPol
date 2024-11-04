@@ -1,12 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, send_file
 from models.NroJ import nroJ
 from utils import db
 from utils.db import db
 from datetime import datetime
+import pandas as pd
+from io import BytesIO
+from flask_login import login_required
+
 #Uso de blueprint, sirve para no tener que importar app y cargar los metodos y los html aca
 NrosJ = Blueprint('NrosJ', __name__)
 
 @NrosJ.route('/NrosJ')
+@login_required
 def home():
     NrosJ = nroJ.query.all()
     return render_template('NumerosJudiciales.html', NrosJ=NrosJ)
@@ -60,6 +65,36 @@ def delete(id):
 
 
         return redirect(url_for('NrosJ.home'))
+
+@NrosJ.route('/export/NrosJ')
+def export_excel():
+    # Consulta de los datos de la base de datos
+    NrosJ = nroJ.query.all()
+    
+    # Crear un DataFrame de Pandas
+    data = [
+        {
+            "ID": NroJ.id,
+            "Fecha": NroJ.fecha,
+            "Secretario": NroJ.secretario,
+            "Destino": NroJ.destino,
+            "Motivo": NroJ.motivo,
+
+        }
+        for NroJ in NrosJ
+    ]
+    df = pd.DataFrame(data)
+
+    # Guardar el DataFrame en un archivo Excel en memoria
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name="NrosJ")
+    output.seek(0)
+
+    # Enviar el archivo al cliente para descargarlo
+    return send_file(output, as_attachment=True, download_name="NrosJ.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+
 
 
 @NrosJ.route('/about')

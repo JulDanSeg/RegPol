@@ -1,0 +1,54 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="col-md-4 offset-md-4">
+  <div class="card card-body bg-dark text-white">
+    <h1>Edit Task</h1>
+
+    <form action="{{url_for('secuestros.update', id=secuestro.id)}}" method="POST">
+
+        <div class="mb-3">
+        <label for="fechaing">Fecha ingreso:</label>
+        <input
+          type="date"
+          name="fechaing"
+          value="{{secuestro.fechaing}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+        </div>
+
+        <div class="mb-3">
+            <label for="detalle">Detalle:</label>
+            <input
+              type="text"
+              name="detalle"
+              value="{{secuestro.detalle}}"
+              class="form-control bg-dark text-white rounded-0"
+            />
+        </div>
+
+      <div class="mb-3">
+        <label for="nroExpte">Numero Expediente:</label>
+        <input
+          type="text"
+          name="nroExpte"
+          value="{{secuestro.nroExpte}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="fechasal">Fecha de Salida:</label>
+        <input
+          type="number"
+          name="fechasal"
+          value="{{secuestro.fechasal}}"
+          class="form-control bg-dark text-white rounded-0"
+        />
+      </div>
+
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

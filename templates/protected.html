@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Página Protegida | RegPol
+{% endblock %}
+
+{% block body %}
+  <div class="container mt-5">
+    <h1 class="h3">Página Protegida</h1>
+    <p>Bienvenido, {{ current_user.username }}. Solo los usuarios autenticados pueden ver esta página.</p>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger mt-3">Cerrar Sesión</a>
+  </div>
+{% endblock %}

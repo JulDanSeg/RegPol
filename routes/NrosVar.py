@@ -1,12 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, send_file
 from models.NroVar import nroVar
 from utils import db
 from utils.db import db
 from datetime import datetime
+import pandas as pd
+from io import BytesIO
+from flask_login import login_required
+
 #Uso de blueprint, sirve para no tener que importar app y cargar los metodos y los html aca
 NrosV = Blueprint('NrosV', __name__)
 
 @NrosV.route('/NrosV')
+@login_required
 def home():
     NrosV = nroVar.query.all()
     return render_template('NumerosVarios.html', NrosV=NrosV)
@@ -60,6 +65,34 @@ def delete(id):
 
 
         return redirect(url_for('NrosV.home'))
+
+@NrosV.route('/export/NrosV')
+def export_excel():
+    # Consulta de los datos de la base de datos
+    NrosV = nroVar.query.all()
+    
+    # Crear un DataFrame de Pandas
+    data = [
+        {
+            "ID": NroV.id,
+            "Fecha": NroV.fecha,
+            "Secretario": NroV.secretario,
+            "Destino": NroV.destino,
+            "Motivo": NroV.motivo,
+
+        }
+        for NroV in NrosV
+    ]
+    df = pd.DataFrame(data)
+
+    # Guardar el DataFrame en un archivo Excel en memoria
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name="NrosV")
+    output.seek(0)
+
+    # Enviar el archivo al cliente para descargarlo
+    return send_file(output, as_attachment=True, download_name="NrosV.xlsx", mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 
 @NrosV.route('/about')

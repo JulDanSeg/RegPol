@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}Resultados de la búsqueda{% endblock %}
+
+{% block body %}
+    <h2>Resultados de la búsqueda</h2>
+    {% if resultados %}
+        <ul class="list-group">
+            {% for resultado in resultados %}
+                <li class="list-group-item">
+                    {% if resultado.__tablename__ == 'efectivo' %}
+                        <strong>Efectivo:</strong> {{ resultado.fullname }} - DNI: {{ resultado.DNI }} - Legajo: {{ resultado.LP }}
+                    {% elif resultado.__tablename__ == 'expte' %}
+                        <strong>Expediente:</strong> {{ resultado.detalle }} - Secretario: {{ resultado.secretario }} - Instructor: {{ resultado.instructor }}
+                    {% elif resultado.__tablename__ == 'causa' %}
+                        <strong>Causa:</strong> {{ resultado.ptvo }} - Número de expediente: {{ resultado.nroExpte }} - Secretario: {{ resultado.secretario }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+{% endblock %}
